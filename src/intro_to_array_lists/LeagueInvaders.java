@@ -6,14 +6,12 @@ public class LeagueInvaders {
 JFrame frame;
 final int width = 500;
 final int height = 800;
+LIGamePanel GP;
 public static void main(String[] args) {
 new LeagueInvaders()	.setup();
 }
 
-void constructor() {
-	
-	
-}
+
 
 
 void setup() {
@@ -21,6 +19,7 @@ void setup() {
 	frame.setVisible(true);
 	frame.setSize(width, height);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	GP = new LIGamePanel();
 }
 
 
