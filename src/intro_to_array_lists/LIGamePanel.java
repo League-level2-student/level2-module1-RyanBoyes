@@ -1,6 +1,7 @@
 package intro_to_array_lists;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,8 @@ final int MENU_STATE = 0;
 final int GAME_STATE = 1;
 final int END_STATE = 2;
 int currentState = 0;
+Font titleFont;
+
 
 LIGamePanel(){
 	timer = new Timer(1000/60,this);
