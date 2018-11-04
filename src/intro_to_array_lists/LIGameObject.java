@@ -12,24 +12,31 @@ int height;
 
 
 LIGameObject(int x, int y, int width, int height){
-	
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
 }
 
 void update() {
-	if(x<400) {
-		for(int a=0;a<100;a+=5) {
-			x++;
-			y++;
-		}
-	}
-	
 	
 	
 }
 
 void draw(Graphics g) {
-	g.fillRect(x, y, 100, 100);
+	
+
+
+
 }
+
+
+
+
+
+
+
+
 
 
 

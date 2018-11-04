@@ -17,11 +17,21 @@ final int GAME_STATE = 1;
 final int END_STATE = 2;
 int currentState = 0;
 Font titleFont;
-
-
+Font enterFont;
+Font instructionFont;
+Font overFont;
+Font enemyFont;
+Font restartFont;
+LIRocketship ship;
 LIGamePanel(){
 	timer = new Timer(1000/60,this);
-	
+	titleFont = new Font("Arial", Font.PLAIN, 48);
+	enterFont = new Font("Arial", Font.PLAIN, 36);
+	instructionFont = new Font("Arial", Font.PLAIN, 20);
+	overFont = new Font("Arial", Font.PLAIN, 48);
+	enemyFont = new Font("Arial", Font.PLAIN, 36);
+	restartFont = new Font("Arial", Font.PLAIN, 36);
+	ship = new LIRocketship(250,700,50,50);
 }
 
 
@@ -39,15 +49,28 @@ void drawMenuState(Graphics g){
 	g.setColor(Color.BLUE);
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height); 
 	
+	g.setFont(titleFont);
+	g.drawString("LEAGUE INVADERS", 20, 130);
+	g.setColor(Color.YELLOW);
+	g.setFont(enterFont);
+	g.drawString("Press ENTER to start.", 70, 400);
+	g.setColor(Color.YELLOW);
+	g.setFont(instructionFont);
+	g.drawString("Press SPACE for instructions.", 120, 650);
+	g.setFont(titleFont);
+	g.drawString("LEAGUE INVADERS", 20, 130);
+	g.setColor(Color.YELLOW);
+	
 }
 
 void updateGameState() {
-	
+	ship.update();
 }
 
 void drawGameState(Graphics g) {
 	g.setColor(Color.BLACK);
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+	ship.draw(g);
 }
 
 void updateEndState() {
@@ -57,6 +80,20 @@ void updateEndState() {
 void drawEndState(Graphics g) {
 	g.setColor(Color.RED);
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+	
+	g.setFont(overFont);
+	g.drawString("GAME OVER", 100, 175);
+	g.setColor(Color.BLACK);
+	g.setFont(enemyFont);
+	g.drawString("You killed" + " " + "enemies", 90, 400);
+	g.setColor(Color.BLACK);
+	g.setFont(restartFont);
+	g.drawString("Press ENTER to restart", 70, 650);
+	g.setColor(Color.BLACK);
+	g.setFont(overFont);
+	g.drawString("GAME OVER", 100, 175);
+	g.setColor(Color.BLACK);
+
 }
 
 
@@ -117,7 +154,18 @@ public void actionPerformed(ActionEvent e) {
 @Override
 public void keyTyped(KeyEvent e) {
 	// TODO Auto-generated method stub
-	
+	if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		ship.x-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		ship.x+=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_UP) {
+		ship.y-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+		ship.y+=40;
+	}
 	
 }
 
@@ -131,12 +179,37 @@ public void keyPressed(KeyEvent e) {
 			currentState=MENU_STATE;
 		}
 	}
+	
+	if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		ship.x-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		ship.x+=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_UP) {
+		ship.y-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+		ship.y+=40;
+	}
+	
 }
 
 
 @Override
 public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
-	
+	if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		ship.x-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		ship.x+=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_UP) {
+		ship.y-=40;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+		ship.y+=40;
+	}
 }
 }
