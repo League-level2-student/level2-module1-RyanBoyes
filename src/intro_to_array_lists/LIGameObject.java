@@ -4,44 +4,25 @@ import java.awt.Graphics;
 
 public class LIGameObject {
 
-int x;
-int y;
-int width;
-int height;
+	int x;
+	int y;
+	int width;
+	int height;
+	boolean isAlive = true;
 
+	LIGameObject(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
 
+	void update() {
 
-LIGameObject(int x, int y, int width, int height){
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
-}
+	}
 
-void update() {
-	
-	
-}
+	void draw(Graphics g) {
 
-void draw(Graphics g) {
-	
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}
 
 }
