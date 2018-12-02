@@ -3,21 +3,22 @@ package intro_to_array_lists;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class LIRocketship extends LIGameObject {
-	int speed;
+public class LIAliens extends LIGameObject {
 
-	LIRocketship(int x, int y, int width, int height) {
+	LIAliens(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 5;
+
 	}
 
 	void update() {
-
+		y++;
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.YELLOW);
 		g.fillRect(x, y, width, height);
 	}
+
+	// ALIENS 10
 
 }

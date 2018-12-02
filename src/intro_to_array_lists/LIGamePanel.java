@@ -161,6 +161,7 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState > END_STATE) {
 				currentState = MENU_STATE;
 			}
+
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -173,6 +174,10 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 			ship.y += 40;
 		}
 
+		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			Oman.addProjectile(new LIProjectile(ship.x + 21, ship.y, 10, 10));
+
+		}
 	}
 
 	@Override

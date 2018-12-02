@@ -13,7 +13,7 @@ public class LIProjectile extends LIGameObject {
 	}
 
 	void update() {
-		y = speed;
+		y -= speed;
 		if (y < 0) {
 			isAlive = false;
 		}
