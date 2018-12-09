@@ -67,6 +67,7 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		Oman.update();
+		Oman.manageEnemies();
 
 	}
 
@@ -142,13 +143,13 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			ship.x -= 40;
+			ship.x -= 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			ship.x += 40;
+			ship.x += 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			ship.y -= 40;
+			ship.y -= 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			ship.y += 40;
+			ship.y += 35;
 		}
 
 	}
@@ -165,13 +166,13 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			ship.x -= 40;
+			ship.x -= 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			ship.x += 40;
+			ship.x += 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			ship.y -= 40;
+			ship.y -= 35;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			ship.y += 40;
+			ship.y += 35;
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -183,14 +184,6 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			ship.x -= 40;
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			ship.x += 40;
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			ship.y -= 40;
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			ship.y += 40;
-		}
+
 	}
 }

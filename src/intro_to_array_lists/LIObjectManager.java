@@ -60,4 +60,35 @@ public class LIObjectManager {
 		}
 	}
 
+	void purgeObjects() {
+		for (int i = 0; i < Aliens.size(); i++) {
+			if (Aliens.get(i).isAlive == false) {
+				Aliens.remove(i);
+			}
+		}
+
+	}
+
+	void checkCollision() {
+		for (LIAliens a : Aliens) {
+
+			if (R1.collisionBox.intersects(a.collisionBox)) {
+
+				R1.isAlive = false;
+
+			}
+			for (int i = 0; i < Projectiles.size(); i++) {
+				Projectiles.get(i);
+
+			}
+			for (int s = 0; s < Aliens.size(); s++) {
+				Aliens.get(s);
+			}
+
+			// COLLISIONS 8
+
+		}
+
+	}
+
 }

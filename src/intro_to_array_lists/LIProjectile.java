@@ -13,6 +13,8 @@ public class LIProjectile extends LIGameObject {
 	}
 
 	void update() {
+		super.update();
+
 		y -= speed;
 		if (y < 0) {
 			isAlive = false;

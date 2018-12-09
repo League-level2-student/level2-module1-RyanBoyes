@@ -11,6 +11,7 @@ public class LIAliens extends LIGameObject {
 	}
 
 	void update() {
+		super.update();
 		y++;
 	}
 
@@ -18,7 +19,5 @@ public class LIAliens extends LIGameObject {
 		g.setColor(Color.YELLOW);
 		g.fillRect(x, y, width, height);
 	}
-
-	// ALIENS 10
 
 }

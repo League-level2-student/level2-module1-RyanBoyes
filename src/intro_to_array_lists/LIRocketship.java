@@ -12,7 +12,7 @@ public class LIRocketship extends LIGameObject {
 	}
 
 	void update() {
-
+		super.update();
 	}
 
 	void draw(Graphics g) {
