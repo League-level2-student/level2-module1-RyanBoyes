@@ -78,14 +78,17 @@ public class LIObjectManager {
 
 			}
 			for (int i = 0; i < Projectiles.size(); i++) {
-				Projectiles.get(i);
+				if (Projectiles.get(i).collisionBox.intersects(a.collisionBox)) {
+					Projectiles.get(i).isAlive = false;
+				}
 
 			}
 			for (int s = 0; s < Aliens.size(); s++) {
-				Aliens.get(s);
-			}
+				if (Aliens.get(s).collisionBox.intersects(R1.collisionBox)) {
+					Aliens.get(s).isAlive = false;
 
-			// COLLISIONS 8
+				}
+			}
 
 		}
 

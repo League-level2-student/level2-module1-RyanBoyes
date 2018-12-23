@@ -68,6 +68,11 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		Oman.update();
 		Oman.manageEnemies();
+		Oman.checkCollision();
+		Oman.purgeObjects();
+		if (ship.isAlive == false) {
+			currentState = END_STATE;
+		}
 
 	}
 
@@ -75,6 +80,7 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
 		Oman.draw(g);
+
 	}
 
 	void updateEndState() {
