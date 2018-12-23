@@ -10,6 +10,7 @@ public class LIObjectManager {
 	ArrayList<LIAliens> Aliens;
 	long enemyTimer;
 	int enemySpawnTime;
+	int score = 0;
 
 	LIObjectManager(LIRocketship R1) {
 		this.R1 = R1;
@@ -90,6 +91,16 @@ public class LIObjectManager {
 				}
 			}
 
+		}
+
+	}
+
+	void getScore() {
+		for (int s = 0; s < Aliens.size(); s++) {
+			if (Aliens.get(s).isAlive == false) {
+				score++;
+				// COLLISIONS 14
+			}
 		}
 
 	}
