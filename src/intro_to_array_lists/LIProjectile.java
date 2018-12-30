@@ -1,6 +1,5 @@
 package intro_to_array_lists;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class LIProjectile extends LIGameObject {
@@ -22,8 +21,7 @@ public class LIProjectile extends LIGameObject {
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
+		g.drawImage(LIGamePanel.bulletImg, x, y, width, height, null);
 	}
 
 }

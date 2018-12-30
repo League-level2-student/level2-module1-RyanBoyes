@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -25,6 +28,10 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 	Font restartFont;
 	LIRocketship ship;
 	LIObjectManager Oman;
+	public static BufferedImage alienImg;
+	public static BufferedImage rocketImg;
+	public static BufferedImage bulletImg;
+	public static BufferedImage spaceImg;
 
 	LIGamePanel() {
 		timer = new Timer(1000 / 60, this);
@@ -36,6 +43,24 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 		restartFont = new Font("Arial", Font.PLAIN, 36);
 		ship = new LIRocketship(250, 700, 50, 50);
 		Oman = new LIObjectManager(ship);
+
+		try {
+
+			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
 	}
 
 	void startGame() {
@@ -77,8 +102,8 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.drawImage(spaceImg, 0, 0, LeagueInvaders.width, LeagueInvaders.height, null);
+
 		Oman.draw(g);
 
 	}
@@ -95,7 +120,7 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("GAME OVER", 100, 175);
 		g.setColor(Color.BLACK);
 		g.setFont(enemyFont);
-		g.drawString("You killed" + " " + "enemies", 90, 400);
+		g.drawString("You killed" + " lots of " + "enemies", 50, 400);
 		g.setColor(Color.BLACK);
 		g.setFont(restartFont);
 		g.drawString("Press ENTER to restart", 70, 650);
@@ -167,6 +192,11 @@ public class LIGamePanel extends JPanel implements ActionListener, KeyListener {
 			currentState++;
 			if (currentState > END_STATE) {
 				currentState = MENU_STATE;
+			}
+			if (currentState == MENU_STATE) {
+				ship = new LIRocketship(250, 700, 50, 50);
+				Oman = new LIObjectManager(ship);
+
 			}
 
 		}

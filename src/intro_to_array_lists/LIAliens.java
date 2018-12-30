@@ -1,6 +1,5 @@
 package intro_to_array_lists;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class LIAliens extends LIGameObject {
@@ -16,8 +15,7 @@ public class LIAliens extends LIGameObject {
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
-		g.fillRect(x, y, width, height);
+		g.drawImage(LIGamePanel.alienImg, x, y, width, height, null);
 	}
 
 }

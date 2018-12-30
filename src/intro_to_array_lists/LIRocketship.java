@@ -1,6 +1,5 @@
 package intro_to_array_lists;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class LIRocketship extends LIGameObject {
@@ -16,8 +15,7 @@ public class LIRocketship extends LIGameObject {
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, width, height);
+		g.drawImage(LIGamePanel.rocketImg, x, y, width, height, null);
 	}
 
 }

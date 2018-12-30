@@ -17,7 +17,7 @@ public class LIObjectManager {
 		Projectiles = new ArrayList<LIProjectile>();
 		Aliens = new ArrayList<LIAliens>();
 		enemyTimer = 0;
-		enemySpawnTime = 3000;
+		enemySpawnTime = 200;
 
 	}
 
@@ -31,6 +31,7 @@ public class LIObjectManager {
 			Aliens.get(i).update();
 
 		}
+		getScore();
 
 	}
 
@@ -65,6 +66,12 @@ public class LIObjectManager {
 		for (int i = 0; i < Aliens.size(); i++) {
 			if (Aliens.get(i).isAlive == false) {
 				Aliens.remove(i);
+
+			}
+		}
+		for (int z = 0; z < Projectiles.size(); z++) {
+			if (Projectiles.get(z).isAlive == false) {
+				Projectiles.remove(z);
 			}
 		}
 
@@ -81,6 +88,7 @@ public class LIObjectManager {
 			for (int i = 0; i < Projectiles.size(); i++) {
 				if (Projectiles.get(i).collisionBox.intersects(a.collisionBox)) {
 					Projectiles.get(i).isAlive = false;
+					a.isAlive = false;
 				}
 
 			}
@@ -99,7 +107,7 @@ public class LIObjectManager {
 		for (int s = 0; s < Aliens.size(); s++) {
 			if (Aliens.get(s).isAlive == false) {
 				score++;
-				// COLLISIONS 14
+
 			}
 		}
 
