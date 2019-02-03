@@ -1,25 +1,37 @@
 package intro_to_array_lists;
 
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Casino implements ActionListener {
+public class Casino implements ActionListener, KeyListener {
 	JFrame frame;
 	JPanel panel;
 	JButton Rbutton;
 	JButton Button2;
 	JButton Button3;
+	final int MENU_STATE = 0;
+	final int ROULETTE_STATE = 1;
+	final int GAME2_STATE = 2;
+	int currentState = 0;
 	final static int width = 500;
 	final static int height = 800;
-	CGamePanel GP;
+	Font titleFont;
+	Font enterFont;
+	Font rouletteFont;
 
 	public static void main(String[] args) {
 		new Casino().setup();
@@ -29,48 +41,108 @@ public class Casino implements ActionListener {
 	Casino() {
 		frame = new JFrame();
 		panel = new JPanel();
-
-		GP = new CGamePanel();
+		Rbutton = new JButton("ROULETTE");
+		Button2 = new JButton("Game 2");
+		Button3 = new JButton("Game 3");
+		titleFont = new Font("Ariel", Font.BOLD, 48);
+		enterFont = new Font("Ariel", Font.BOLD, 26);
+		rouletteFont = new Font("Ariel", Font.BOLD, 23);
+		
 	}
 
+	
+	
+	
 	void setup() {
-		frame.add(GP);
-		frame.addKeyListener(GP);
-		frame.getContentPane().setPreferredSize(new Dimension(width, height));
-		frame.pack();
+		frame.add(panel);
 		frame.setVisible(true);
+		frame.getContentPane().setPreferredSize(new Dimension(width, height));
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(panel);
-		panel.setVisible(true);
-		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, width, height);
-		panel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = 10;
-		c.gridy = 600;
+		panel.add(Rbutton);
+		panel.add(Button2);
+		panel.add(Button3);
+		}
+	
+	
+	
+	
+	
+	void drawMenuState(Graphics g) {
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 0, Casino.width, Casino.height);
 
-		panel.add(Rbutton = new JButton("ROULETTE"), c);
-		Rbutton.addActionListener(this);
-		c.gridx = 200;
-		c.gridy = 600;
+		g.setFont(titleFont);
+		g.drawString("Casino Name", 80, 90);
+		g.setColor(Color.BLACK);
 
-		panel.add(Button2 = new JButton("Game 2"), c);
-		Button2.addActionListener(this);
-		c.gridx = 450;
-		c.gridy = 600;
+		g.setFont(enterFont);
+		g.drawString("Click the location you'd like to go to", 5, 160);
+		g.setColor(Color.BLACK);
 
-		panel.add(Button3 = new JButton("Game 3"), c);
-		Button3.addActionListener(this);
+		g.setFont(rouletteFont);
+		g.setColor(Color.RED);
+		g.drawString("Roulette: Type 1", 10, 350);
+
+		g.setFont(titleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Casino Name", 80, 90);
+
+	}
+	void updateMenuState() {
+
+	}
+
+	
+	
+	void updateRouletteState() {
+		
+	}
+	
+	void drawRouletteState(Graphics g) {
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0,  Casino.width, Casino.height);
+		
+		
+	}
+
+	public void paintComponent(Graphics g) {
+		if (currentState == MENU_STATE) {
+			drawMenuState(g);
+		}
+		else if(currentState == ROULETTE_STATE) {
+			drawRouletteState(g);
+		}
+		
+	}
+
+	
+	
+
+	
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == Rbutton) {
-			System.out.println("HI");
+		
 		}
+		
 	}
-
-}
