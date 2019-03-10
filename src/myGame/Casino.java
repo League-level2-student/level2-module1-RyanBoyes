@@ -17,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 public class Casino extends JPanel implements ActionListener, KeyListener, MouseListener {
@@ -44,6 +43,8 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	JPanel wheelPanel;
 	JPanel tablePanel;
 
+	boolean tableDrawn = false;
+
 	public static void main(String[] args) {
 		new Casino().setup();
 
@@ -54,7 +55,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		frame.setVisible(true);
 		frame.getContentPane().setPreferredSize(new Dimension(width, height));
 		frame.setSize(width, height);
-		frame.pack();
+
 		frame.addKeyListener(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
@@ -119,24 +120,32 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	}
 
 	void drawRouletteState(Graphics g) {
-		frame.add(roulettePanel);
-		roulettePanel.add(tablePanel);
-		roulettePanel.add(wheelPanel);
 		g.setColor(rouletteColor);
 		g.fillRect(0, 0, Casino.width, Casino.height);
 
-		GridLayout experimentLayout = new GridLayout(4, 12);
+	}
+
+	void drawRouletteTable(Graphics g) {
+
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, 200, 200);
+
+		GridLayout experimentLayout = new GridLayout(16, 3);
 		tablePanel.setLayout(experimentLayout);
+
 		int cellCounter = 1;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 12; j++) {
-				JLabel cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
+
+				JLabel cell = new JLabel(cellCounter + "");
 				tablePanel.add(cell);
+				System.out.println(cell);
 
 				cell.addMouseListener(this);
 				cell.setForeground(Color.WHITE);
 				cell.setOpaque(true);
-				if (j % 2 == 1) {
+
+				if (cellCounter % 2 == 1) {
 					cell.setBackground(Color.BLACK);
 					cellCounter++;
 				} else {
@@ -144,9 +153,11 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 					cellCounter++;
 
 				}
+
 			}
 		}
-
+		frame.add(tablePanel);
+		frame.pack();
 	}
 
 	@Override
@@ -157,8 +168,12 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 
 		} else if (currentState == ROULETTE_STATE) {
 			drawRouletteState(g);
-		}
 
+			if (tableDrawn == false) {
+				drawRouletteTable(g);
+				tableDrawn = true;
+			}
+		}
 	}
 
 	@Override
@@ -172,7 +187,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_1) {
 			currentState = ROULETTE_STATE;
-			System.out.println("Work");
+
 		} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			currentState = MENU_STATE;
 		}
