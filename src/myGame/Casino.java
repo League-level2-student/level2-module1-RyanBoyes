@@ -1,6 +1,7 @@
 package myGame;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,10 +13,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -23,6 +26,7 @@ import javax.swing.Timer;
 public class Casino extends JPanel implements ActionListener, KeyListener, MouseListener {
 	Timer timer;
 	Color rouletteColor;
+	Color rouletteColor2;
 	JFrame frame;
 	Casino panel;
 	JButton Rbutton;
@@ -42,12 +46,17 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Font font0;
 	Font font00;
 	Font fontNum;
+	Font fontOpt;
 
 	JPanel roulettePanel;
 	JPanel wheelPanel;
 	JPanel tablePanel;
 	JPanel option12;
 	JPanel optionOther;
+	
+	JLabel cell;
+	
+	String Numb;
 
 	boolean tableDrawn = false;
 
@@ -71,6 +80,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Casino() {
 		timer = new Timer(1000 / 60, this);
 		rouletteColor = new Color(53, 86, 21);
+		rouletteColor2 = new Color(53, 90, 18);
 		frame = new JFrame();
 		panel = this;
 
@@ -89,6 +99,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		font0 = new Font("Ariel", Font.BOLD, 21);
 		font00 = new Font("Ariel", Font.BOLD, 21);
 		fontNum = new Font("Ariel", Font.BOLD, 15);
+		fontOpt = new Font("Ariel", Font.BOLD, 19);
 		timer.start();
 	}
 
@@ -145,22 +156,25 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		roulettePanel.add(optionOther);
 		wheelPanel.setBounds(0, 0, 500, 300);
 		tablePanel.setBounds(176, 300, 324, 600);
-		optionOther.setBounds(0, 300, 175, 600);
-		option12.setBounds(88, 300, 175, 600);
+		optionOther.setBounds(0, 301, 88, 600);
+		option12.setBounds(88, 301, 87, 600);
 
 		GridLayout experimentLayout = new GridLayout(13, 3);
 		tablePanel.setLayout(experimentLayout);
 		GridLayout Layout2 = new GridLayout(3, 1);
 		option12.setLayout(Layout2);
+		GridLayout Layout3 = new GridLayout(4,1);
+		optionOther.setLayout(Layout3);
 
 		int cellCounter = -2;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 13; j++) {
 
-				JLabel cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
+				cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
 				tablePanel.add(cell);
 				System.out.println(cell);
-
+				
+				Numb = cell.getText();
 				cell.addMouseListener(this);
 				cell.setForeground(Color.WHITE);
 				cell.setFont(fontNum);
@@ -197,11 +211,12 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		int optionCounter = 0;
 		for (int i = 0; i < 1; i++) {
 			for (int a = 0; a < 3; a++) {
-				JLabel options = new JLabel(optionCounter + "", SwingConstants.LEFT);
+				JLabel options = new JLabel(optionCounter + "", SwingConstants.CENTER);
 				option12.add(options);
 
 				options.addMouseListener(this);
 				options.setForeground(Color.WHITE);
+				options.setFont(fontOpt);
 				options.setBackground(rouletteColor);
 				options.setOpaque(true);
 
@@ -209,9 +224,57 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 					options.setText("1st 12");
 					optionCounter++;
 				}
+				else if (optionCounter == 1) {
+					options.setText("2nd 12");
+					options.setBackground(rouletteColor2);
+					optionCounter++;
+				}
+				else if(optionCounter == 2) {
+					options.setText("3rd 12");
+					optionCounter++;
+				}
 
 			}
 		}
+			int otherCounter = 0;
+			for(int q = 0; q<1; q++) {
+				for(int w = 0; w<4; w++) {
+					JLabel other = new JLabel(otherCounter + "", SwingConstants.CENTER);
+					optionOther.add(other);
+					
+					other.addMouseListener(this);
+					other.setForeground(Color.WHITE);
+					other.setFont(fontOpt);
+					other.setBackground(rouletteColor);
+					other.setOpaque(true);
+					
+					if(otherCounter==0) {
+						other.setText("1-18");
+						otherCounter++;
+					}
+					else if(otherCounter==1) {
+						other.setForeground(Color.RED);
+						other.setBackground(rouletteColor2);
+						other.setText("EVENS");
+						otherCounter++;
+					}
+					else if(otherCounter==2) {
+						other.setForeground(Color.BLACK);
+						other.setText("ODDS");
+						otherCounter++;
+					}
+					else if(otherCounter==3) {
+						other.setText("19-36");
+						other.setBackground(rouletteColor2);
+						otherCounter++;		
+					}
+					
+					
+					
+					
+				}		
+			}
+		
 
 		frame.add(roulettePanel);
 		frame.pack();
@@ -278,7 +341,10 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		e.getComponent();
+		
+		JOptionPane.showMessageDialog(null, Numb);
+		
 	}
 
 	@Override
