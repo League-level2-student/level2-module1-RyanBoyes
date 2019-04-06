@@ -56,7 +56,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	
 	JLabel cell;
 	
-	String Numb;
+
 
 	boolean tableDrawn = false;
 
@@ -174,7 +174,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 				tablePanel.add(cell);
 				System.out.println(cell);
 				
-				Numb = cell.getText();
+				
 				cell.addMouseListener(this);
 				cell.setForeground(Color.WHITE);
 				cell.setFont(fontNum);
@@ -341,9 +341,10 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		e.getComponent();
+		Component h = e.getComponent();
 		
-		JOptionPane.showMessageDialog(null, Numb);
+		
+		JOptionPane.showMessageDialog(null, h);
 		
 	}
 
