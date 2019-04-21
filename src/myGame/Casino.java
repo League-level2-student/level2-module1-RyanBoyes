@@ -1,7 +1,6 @@
 package myGame;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,7 +12,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,16 +45,19 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Font font00;
 	Font fontNum;
 	Font fontOpt;
+	Font MoneyRemaining;
+
+	int Money;
+	String MoneySpentS;
+	int MoneySpent;
 
 	JPanel roulettePanel;
 	JPanel wheelPanel;
 	JPanel tablePanel;
 	JPanel option12;
 	JPanel optionOther;
-	
-	JLabel cell;
-	
 
+	JLabel cell;
 
 	boolean tableDrawn = false;
 
@@ -100,7 +101,9 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		font00 = new Font("Ariel", Font.BOLD, 21);
 		fontNum = new Font("Ariel", Font.BOLD, 15);
 		fontOpt = new Font("Ariel", Font.BOLD, 19);
+		MoneyRemaining = new Font("Ariel", Font.PLAIN, 15);
 		timer.start();
+		Money = 100;
 	}
 
 	void drawMenuState(Graphics g) {
@@ -145,6 +148,10 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		panel.setVisible(false);
 		wheelPanel.setBackground(rouletteColor);
 
+		g.setFont(MoneyRemaining);
+		g.drawString("Money remaining: $" + Money, 5, 15);
+		g.setColor(Color.BLACK);
+
 	}
 
 	void drawRouletteTable(Graphics g) {
@@ -156,14 +163,14 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		roulettePanel.add(optionOther);
 		wheelPanel.setBounds(0, 0, 500, 300);
 		tablePanel.setBounds(176, 300, 324, 600);
-		optionOther.setBounds(0, 301, 88, 600);
-		option12.setBounds(88, 301, 87, 600);
+		optionOther.setBounds(0, 300, 88, 599);
+		option12.setBounds(88, 300, 87, 599);
 
 		GridLayout experimentLayout = new GridLayout(13, 3);
 		tablePanel.setLayout(experimentLayout);
 		GridLayout Layout2 = new GridLayout(3, 1);
 		option12.setLayout(Layout2);
-		GridLayout Layout3 = new GridLayout(4,1);
+		GridLayout Layout3 = new GridLayout(4, 1);
 		optionOther.setLayout(Layout3);
 
 		int cellCounter = -2;
@@ -173,8 +180,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 				cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
 				tablePanel.add(cell);
 				System.out.println(cell);
-				
-				
+
 				cell.addMouseListener(this);
 				cell.setForeground(Color.WHITE);
 				cell.setFont(fontNum);
@@ -221,60 +227,53 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 				options.setOpaque(true);
 
 				if (optionCounter == 0) {
-					options.setText("1st 12");
+					options.setText("1-12");
 					optionCounter++;
-				}
-				else if (optionCounter == 1) {
-					options.setText("2nd 12");
+				} else if (optionCounter == 1) {
+					options.setText("13-24");
 					options.setBackground(rouletteColor2);
 					optionCounter++;
-				}
-				else if(optionCounter == 2) {
-					options.setText("3rd 12");
+				} else if (optionCounter == 2) {
+					options.setText("25-36");
 					optionCounter++;
 				}
 
 			}
 		}
-			int otherCounter = 0;
-			for(int q = 0; q<1; q++) {
-				for(int w = 0; w<4; w++) {
-					JLabel other = new JLabel(otherCounter + "", SwingConstants.CENTER);
-					optionOther.add(other);
-					
-					other.addMouseListener(this);
-					other.setForeground(Color.WHITE);
-					other.setFont(fontOpt);
-					other.setBackground(rouletteColor);
-					other.setOpaque(true);
-					
-					if(otherCounter==0) {
-						other.setText("1-18");
-						otherCounter++;
-					}
-					else if(otherCounter==1) {
-						other.setForeground(Color.RED);
-						other.setBackground(rouletteColor2);
-						other.setText("EVENS");
-						otherCounter++;
-					}
-					else if(otherCounter==2) {
-						other.setForeground(Color.BLACK);
-						other.setText("ODDS");
-						otherCounter++;
-					}
-					else if(otherCounter==3) {
-						other.setText("19-36");
-						other.setBackground(rouletteColor2);
-						otherCounter++;		
-					}
-					
-					
-					
-					
-				}		
+		int otherCounter = 0;
+		for (int q = 0; q < 1; q++) {
+			for (int w = 0; w < 4; w++) {
+				JLabel other = new JLabel(otherCounter + "", SwingConstants.CENTER);
+				optionOther.add(other);
+
+				other.addMouseListener(this);
+				other.setForeground(Color.WHITE);
+				other.setFont(fontOpt);
+				other.setBackground(rouletteColor);
+				other.setOpaque(true);
+
+				if (otherCounter == 0) {
+					other.setText("1-18");
+					otherCounter++;
+				} else if (otherCounter == 1) {
+					other.setForeground(Color.RED);
+					other.setBackground(rouletteColor2);
+					other.setText("EVENS");
+					other.setFont(font0);
+					otherCounter++;
+				} else if (otherCounter == 2) {
+					other.setForeground(Color.BLACK);
+					other.setText("ODDS");
+					other.setFont(font0);
+					otherCounter++;
+				} else if (otherCounter == 3) {
+					other.setText("19-36");
+					other.setBackground(rouletteColor2);
+					otherCounter++;
+				}
+
 			}
-		
+		}
 
 		frame.add(roulettePanel);
 		frame.pack();
@@ -294,9 +293,10 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 			if (tableDrawn == false) {
 				drawRouletteTable(g);
 				tableDrawn = true;
-			}
-		}
 
+			}
+
+		}
 	}
 
 	@Override
@@ -311,7 +311,8 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		if (e.getKeyCode() == KeyEvent.VK_1) {
 			currentState = ROULETTE_STATE;
 
-		} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		}
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			currentState = MENU_STATE;
 		}
 	}
@@ -341,11 +342,16 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		Component h = e.getComponent();
-		
-		
-		JOptionPane.showMessageDialog(null, h);
-		
+		JLabel h = (JLabel) e.getComponent();
+
+		MoneySpentS = JOptionPane.showInputDialog("How much would you like to bet on " + h.getText() + "?");
+		MoneySpent = Integer.parseInt(MoneySpentS);
+		if (Money < MoneySpent) {
+			JOptionPane.showMessageDialog(null, "Sorry, you don't have enough money.");
+		} else {
+			Money = Money - MoneySpent;
+		}
+
 	}
 
 	@Override
