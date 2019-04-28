@@ -46,8 +46,10 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Font fontNum;
 	Font fontOpt;
 	Font MoneyRemaining;
+	Font Disclaimer;
 
 	int Money;
+	String MoneyS;
 	String MoneySpentS;
 	int MoneySpent;
 
@@ -56,6 +58,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	JPanel tablePanel;
 	JPanel option12;
 	JPanel optionOther;
+	JPanel MoneyRemainingPanel;
 
 	JLabel cell;
 
@@ -91,6 +94,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		tablePanel = new JPanel();
 		option12 = new JPanel();
 		optionOther = new JPanel();
+		MoneyRemainingPanel = new JPanel();
 
 		titleFont = new Font("Ariel", Font.BOLD, 48);
 		enterFont1 = new Font("Ariel", Font.BOLD, 38);
@@ -102,8 +106,9 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		fontNum = new Font("Ariel", Font.BOLD, 15);
 		fontOpt = new Font("Ariel", Font.BOLD, 19);
 		MoneyRemaining = new Font("Ariel", Font.PLAIN, 15);
+		Disclaimer = new Font("Ariel", Font.BOLD, 19);
 		timer.start();
-		Money = 100;
+
 	}
 
 	void drawMenuState(Graphics g) {
@@ -111,28 +116,32 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		g.fillRect(0, 0, Casino.width, Casino.height);
 
 		g.setFont(titleFont);
-		g.drawString("Casino Name", 80, 90);
 		g.setColor(Color.BLACK);
+		g.drawString("Casino Name", 80, 90);
 
 		g.setFont(enterFont1);
-		g.drawString("Click the location you'd", 20, 180);
 		g.setColor(Color.BLACK);
+		g.drawString("Click the location you'd", 20, 180);
 
 		g.setFont(enterFont2);
-		g.drawString("like to go to", 130, 220);
 		g.setColor(Color.BLACK);
+		g.drawString("like to go to", 130, 220);
 
 		g.setFont(rouletteFont);
 		g.setColor(Color.RED);
-		g.drawString("Roulette: Hit '1'", 105, 350);
+		g.drawString("Roulette: Hit '1'", 105, 390);
+
+		g.setFont(Disclaimer);
+		g.setColor(Color.BLACK);
+		g.drawString("(DISCLAIMER: EVERYTHING IS IN TERMS OF CENTS)", 5, 275);
 
 		g.setFont(returnFont);
 		g.setColor(Color.BLACK);
 		g.drawString("To return to the menu, press 'ESC.'", 15, 760);
 
 		g.setFont(titleFont);
-		g.drawString("Casino Name", 80, 90);
 		g.setColor(Color.BLACK);
+		g.drawString("Casino Name", 80, 90);
 
 	}
 
@@ -146,11 +155,15 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 
 	void drawRouletteState(Graphics g) {
 		panel.setVisible(false);
+
 		wheelPanel.setBackground(rouletteColor);
 
+		g.setColor(rouletteColor2);
+		g.fillRect(0, 0, 200, 20);
+
 		g.setFont(MoneyRemaining);
-		g.drawString("Money remaining: $" + Money, 5, 15);
 		g.setColor(Color.BLACK);
+		g.drawString("Money remaining: " + Money + "¢", 5, 15);
 
 	}
 
@@ -161,10 +174,13 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		roulettePanel.add(tablePanel);
 		roulettePanel.add(option12);
 		roulettePanel.add(optionOther);
+		roulettePanel.add(MoneyRemainingPanel);
+
 		wheelPanel.setBounds(0, 0, 500, 300);
 		tablePanel.setBounds(176, 300, 324, 600);
 		optionOther.setBounds(0, 300, 88, 599);
 		option12.setBounds(88, 300, 87, 599);
+		MoneyRemainingPanel.setBounds(0, 0, 20, 7);
 
 		GridLayout experimentLayout = new GridLayout(13, 3);
 		tablePanel.setLayout(experimentLayout);
@@ -179,7 +195,6 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 
 				cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
 				tablePanel.add(cell);
-				System.out.println(cell);
 
 				cell.addMouseListener(this);
 				cell.setForeground(Color.WHITE);
@@ -192,7 +207,9 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 					cell.setBackground(rouletteColor);
 					cellCounter++;
 				} else if (cellCounter == -1) {
-					cell.setText("");
+					cell.setText(Money + "¢");
+					cell.setFont(returnFont);
+					cell.setForeground(Color.YELLOW);
 					cell.setBackground(rouletteColor);
 					cellCounter++;
 				} else if (cellCounter == 0) {
@@ -289,6 +306,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		} else if (currentState == ROULETTE_STATE) {
 
 			drawRouletteState(g);
+			System.out.println("t");
 
 			if (tableDrawn == false) {
 				drawRouletteTable(g);
@@ -309,6 +327,9 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_1) {
+			MoneyS = JOptionPane
+					.showInputDialog("How much money would you like to transfer to chips? (In terms of cents)");
+			Money = Integer.parseInt(MoneyS);
 			currentState = ROULETTE_STATE;
 
 		}
