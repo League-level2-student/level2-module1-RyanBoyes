@@ -25,6 +25,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Timer timer;
 	Color rouletteColor;
 	Color rouletteColor2;
+	Color spinColor;
 	JFrame frame;
 	Casino panel;
 	JButton Rbutton;
@@ -35,7 +36,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	final int GAME2_STATE = 2;
 	int currentState = 0;
 	final static int width = 500;
-	final static int height = 900;
+	final static int height = 960;
 	Font titleFont;
 	Font enterFont1;
 	Font enterFont2;
@@ -59,6 +60,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	JPanel option12;
 	JPanel optionOther;
 	JPanel MoneyRemainingPanel;
+	JPanel spinPanel;
 
 	JLabel cell;
 
@@ -85,6 +87,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		timer = new Timer(1000 / 60, this);
 		rouletteColor = new Color(53, 86, 21);
 		rouletteColor2 = new Color(53, 90, 18);
+		spinColor = new Color(140,15,15);
 		frame = new JFrame();
 		panel = this;
 
@@ -95,6 +98,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		option12 = new JPanel();
 		optionOther = new JPanel();
 		MoneyRemainingPanel = new JPanel();
+		spinPanel = new JPanel();
 
 		titleFont = new Font("Ariel", Font.BOLD, 48);
 		enterFont1 = new Font("Ariel", Font.BOLD, 38);
@@ -157,13 +161,12 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		panel.setVisible(false);
 
 		wheelPanel.setBackground(rouletteColor);
+		spinPanel.setBackground(spinColor);
 
 		g.setColor(rouletteColor2);
 		g.fillRect(0, 0, 200, 20);
 
-		g.setFont(MoneyRemaining);
-		g.setColor(Color.BLACK);
-		g.drawString("Money remaining: " + Money + "¢", 5, 15);
+		
 
 	}
 
@@ -175,12 +178,14 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		roulettePanel.add(option12);
 		roulettePanel.add(optionOther);
 		roulettePanel.add(MoneyRemainingPanel);
+		roulettePanel.add(spinPanel);
 
 		wheelPanel.setBounds(0, 0, 500, 300);
 		tablePanel.setBounds(176, 300, 324, 600);
 		optionOther.setBounds(0, 300, 88, 599);
 		option12.setBounds(88, 300, 87, 599);
 		MoneyRemainingPanel.setBounds(0, 0, 20, 7);
+		spinPanel.setBounds(0, 900, 500, 60);
 
 		GridLayout experimentLayout = new GridLayout(13, 3);
 		tablePanel.setLayout(experimentLayout);
@@ -291,7 +296,27 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 
 			}
 		}
-
+		int spinCounter = 0;
+		for(int c = 0; c<1;c++) {
+			JLabel Spin = new JLabel(spinCounter + "", SwingConstants.CENTER);
+			spinPanel.add(Spin);
+			Spin.addMouseListener(this);
+			Spin.setForeground(Color.BLACK);
+			Spin.setFont(titleFont);
+			Spin.setBackground(spinColor);
+			Spin.setOpaque(true);
+			Spin.setText("Spin");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		frame.add(roulettePanel);
 		frame.pack();
 
@@ -364,9 +389,18 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JLabel h = (JLabel) e.getComponent();
-
-		MoneySpentS = JOptionPane.showInputDialog("How much would you like to bet on " + h.getText() + "?");
-		MoneySpent = Integer.parseInt(MoneySpentS);
+		
+		if(h.getText().equals("Spin")) {
+			JOptionPane.showMessageDialog(null, "WORK");
+		}
+		else if(h.getText().equals(Money+"¢")) {
+			JOptionPane.showMessageDialog(null, "Your current balance is "+ Money + "¢");
+		}
+		else {	MoneySpentS = JOptionPane.showInputDialog("How much would you like to bet on " + h.getText() + "?");
+				MoneySpent = Integer.parseInt(MoneySpentS);
+		}
+		
+		
 		if (Money < MoneySpent) {
 			JOptionPane.showMessageDialog(null, "Sorry, you don't have enough money.");
 		} else {
