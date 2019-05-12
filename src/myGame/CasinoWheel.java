@@ -16,6 +16,23 @@ public class CasinoWheel {
 public BufferedImage wheelImg;
 	
 	
+
+CasinoWheel(){
+	try {
+		wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel.png"));
+	} catch(IOException e){
+		e.printStackTrace();
+	}
+	
+
+}
+
+
+
+
+
+
+
 	
 public static BufferedImage rotate(BufferedImage image, double angle) {
     double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
@@ -40,15 +57,16 @@ private static GraphicsConfiguration getDefaultConfiguration() {
 
 
 	
-	void drawWheel(Graphics g) {
-		g.drawImage(wheelImg, 0,0,500,800, null);
+	void draw(Graphics g) {
+		g.drawImage(wheelImg, 120,10,250,250, null);
+		
 	}
 	
 	
 	
 	
 	
-	
+
 	
 	
 	

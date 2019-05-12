@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 public class Casino extends JPanel implements ActionListener, KeyListener, MouseListener {
+	CasinoWheel WheelObj;
 	Timer timer;
 	Color rouletteColor;
 	Color rouletteColor2;
@@ -59,7 +60,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	JPanel tablePanel;
 	JPanel option12;
 	JPanel optionOther;
-	JPanel MoneyRemainingPanel;
+	
 	JPanel spinPanel;
 
 	JLabel cell;
@@ -84,6 +85,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	}
 
 	Casino() {
+		WheelObj = new CasinoWheel();
 		timer = new Timer(1000 / 60, this);
 		rouletteColor = new Color(53, 86, 21);
 		rouletteColor2 = new Color(53, 90, 18);
@@ -97,7 +99,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		tablePanel = new JPanel();
 		option12 = new JPanel();
 		optionOther = new JPanel();
-		MoneyRemainingPanel = new JPanel();
+		
 		spinPanel = new JPanel();
 
 		titleFont = new Font("Ariel", Font.BOLD, 48);
@@ -158,34 +160,35 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	}
 
 	void drawRouletteState(Graphics g) {
-		panel.setVisible(false);
+		panel.setVisible(true);
 
 		wheelPanel.setBackground(rouletteColor);
 		spinPanel.setBackground(spinColor);
 
-		g.setColor(rouletteColor2);
-		g.fillRect(0, 0, 200, 20);
-
 		
+		
+		
+		WheelObj.draw(g);
 
 	}
 
 	void drawRouletteTable(Graphics g) {
-
+		
 		roulettePanel.setLayout(null);
 		roulettePanel.add(wheelPanel);
 		roulettePanel.add(tablePanel);
 		roulettePanel.add(option12);
 		roulettePanel.add(optionOther);
-		roulettePanel.add(MoneyRemainingPanel);
 		roulettePanel.add(spinPanel);
+		
+		
 
 		wheelPanel.setBounds(0, 0, 500, 300);
 		tablePanel.setBounds(176, 300, 324, 600);
 		optionOther.setBounds(0, 300, 88, 599);
 		option12.setBounds(88, 300, 87, 599);
-		MoneyRemainingPanel.setBounds(0, 0, 20, 7);
 		spinPanel.setBounds(0, 900, 500, 60);
+
 
 		GridLayout experimentLayout = new GridLayout(13, 3);
 		tablePanel.setLayout(experimentLayout);
@@ -331,7 +334,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		} else if (currentState == ROULETTE_STATE) {
 
 			drawRouletteState(g);
-			System.out.println("t");
+			
 
 			if (tableDrawn == false) {
 				drawRouletteTable(g);
