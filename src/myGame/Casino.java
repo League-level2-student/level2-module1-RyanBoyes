@@ -27,8 +27,8 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Color rouletteColor;
 	Color rouletteColor2;
 	Color spinColor;
-	JFrame frame;
-	Casino panel;
+	
+	
 	JButton Rbutton;
 	JButton Button2;
 	JButton Button3;
@@ -36,8 +36,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	final int ROULETTE_STATE = 1;
 	final int GAME2_STATE = 2;
 	int currentState = 0;
-	final static int width = 500;
-	final static int height = 960;
+	
 	Font titleFont;
 	Font enterFont1;
 	Font enterFont2;
@@ -54,9 +53,12 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	String MoneyS;
 	String MoneySpentS;
 	int MoneySpent;
-
-	JPanel roulettePanel;
+	
+	JPanel GamePanel;
+	
 	JPanel wheelPanel;
+	
+	JPanel roulettePanel;
 	JPanel tablePanel;
 	JPanel option12;
 	JPanel optionOther;
@@ -67,22 +69,6 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 
 	boolean tableDrawn = false;
 
-	public static void main(String[] args) {
-		new Casino().setup();
-
-	}
-
-	void setup() {
-
-		frame.setVisible(true);
-		frame.getContentPane().setPreferredSize(new Dimension(width, height));
-		frame.setSize(width, height);
-
-		frame.addKeyListener(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(panel);
-
-	}
 
 	Casino() {
 		WheelObj = new CasinoWheel();
@@ -90,9 +76,9 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		rouletteColor = new Color(53, 86, 21);
 		rouletteColor2 = new Color(53, 90, 18);
 		spinColor = new Color(140,15,15);
-		frame = new JFrame();
-		panel = this;
-
+		
+		GamePanel = new JPanel();
+		GamePanel.setLayout(new BoxLayout(GamePanel, BoxLayout.Y_AXIS));
 		roulettePanel = new JPanel();
 		roulettePanel.setLayout((new BoxLayout(roulettePanel, BoxLayout.PAGE_AXIS)));
 		wheelPanel = new JPanel();
@@ -116,10 +102,17 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 		timer.start();
 
 	}
+	
+	void startgame() {
+		timer.start();
+	}
+	
+	
+	
 
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 0, Casino.width, Casino.height);
+		g.fillRect(0, 0, CasinoRunner.width, CasinoRunner.height);
 
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
@@ -156,174 +149,27 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	}
 
 	void updateRouletteState() {
-
+	
 	}
 
 	void drawRouletteState(Graphics g) {
-		panel.setVisible(true);
+		
 
 		wheelPanel.setBackground(rouletteColor);
 		spinPanel.setBackground(spinColor);
-
+		
+		GamePanel.add(wheelPanel);
+		GamePanel.add(roulettePanel);
+		
+		GamePanel.setVisible(false);
 		
 		
 		
-		WheelObj.draw(g);
+		
 
 	}
 
-	void drawRouletteTable(Graphics g) {
-		
-		roulettePanel.setLayout(null);
-		roulettePanel.add(wheelPanel);
-		roulettePanel.add(tablePanel);
-		roulettePanel.add(option12);
-		roulettePanel.add(optionOther);
-		roulettePanel.add(spinPanel);
-		
-		
-
-		wheelPanel.setBounds(0, 0, 500, 300);
-		tablePanel.setBounds(176, 300, 324, 600);
-		optionOther.setBounds(0, 300, 88, 599);
-		option12.setBounds(88, 300, 87, 599);
-		spinPanel.setBounds(0, 900, 500, 60);
-
-
-		GridLayout experimentLayout = new GridLayout(13, 3);
-		tablePanel.setLayout(experimentLayout);
-		GridLayout Layout2 = new GridLayout(3, 1);
-		option12.setLayout(Layout2);
-		GridLayout Layout3 = new GridLayout(4, 1);
-		optionOther.setLayout(Layout3);
-
-		int cellCounter = -2;
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 13; j++) {
-
-				cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
-				tablePanel.add(cell);
-
-				cell.addMouseListener(this);
-				cell.setForeground(Color.WHITE);
-				cell.setFont(fontNum);
-				cell.setOpaque(true);
-				if (cellCounter == -2) {
-					cell.setText("0");
-					cell.setFont(font0);
-					cell.setForeground(Color.WHITE);
-					cell.setBackground(rouletteColor);
-					cellCounter++;
-				} else if (cellCounter == -1) {
-					cell.setText(Money + "¢");
-					cell.setFont(returnFont);
-					cell.setForeground(Color.YELLOW);
-					cell.setBackground(rouletteColor);
-					cellCounter++;
-				} else if (cellCounter == 0) {
-					cell.setText("00");
-					cell.setFont(font00);
-					cell.setForeground(Color.WHITE);
-					cell.setBackground(rouletteColor);
-					cellCounter++;
-				}
-
-				else if (cellCounter % 2 == 1) {
-					cell.setBackground(Color.BLACK);
-					cellCounter++;
-				} else {
-					cell.setBackground(Color.RED);
-					cellCounter++;
-
-				}
-
-			}
-		}
-		int optionCounter = 0;
-		for (int i = 0; i < 1; i++) {
-			for (int a = 0; a < 3; a++) {
-				JLabel options = new JLabel(optionCounter + "", SwingConstants.CENTER);
-				option12.add(options);
-
-				options.addMouseListener(this);
-				options.setForeground(Color.WHITE);
-				options.setFont(fontOpt);
-				options.setBackground(rouletteColor);
-				options.setOpaque(true);
-
-				if (optionCounter == 0) {
-					options.setText("1-12");
-					optionCounter++;
-				} else if (optionCounter == 1) {
-					options.setText("13-24");
-					options.setBackground(rouletteColor2);
-					optionCounter++;
-				} else if (optionCounter == 2) {
-					options.setText("25-36");
-					optionCounter++;
-				}
-
-			}
-		}
-		int otherCounter = 0;
-		for (int q = 0; q < 1; q++) {
-			for (int w = 0; w < 4; w++) {
-				JLabel other = new JLabel(otherCounter + "", SwingConstants.CENTER);
-				optionOther.add(other);
-
-				other.addMouseListener(this);
-				other.setForeground(Color.WHITE);
-				other.setFont(fontOpt);
-				other.setBackground(rouletteColor);
-				other.setOpaque(true);
-
-				if (otherCounter == 0) {
-					other.setText("1-18");
-					otherCounter++;
-				} else if (otherCounter == 1) {
-					other.setForeground(Color.RED);
-					other.setBackground(rouletteColor2);
-					other.setText("EVENS");
-					other.setFont(font0);
-					otherCounter++;
-				} else if (otherCounter == 2) {
-					other.setForeground(Color.BLACK);
-					other.setText("ODDS");
-					other.setFont(font0);
-					otherCounter++;
-				} else if (otherCounter == 3) {
-					other.setText("19-36");
-					other.setBackground(rouletteColor2);
-					otherCounter++;
-				}
-
-			}
-		}
-		int spinCounter = 0;
-		for(int c = 0; c<1;c++) {
-			JLabel Spin = new JLabel(spinCounter + "", SwingConstants.CENTER);
-			spinPanel.add(Spin);
-			Spin.addMouseListener(this);
-			Spin.setForeground(Color.BLACK);
-			Spin.setFont(titleFont);
-			Spin.setBackground(spinColor);
-			Spin.setOpaque(true);
-			Spin.setText("Spin");
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		frame.add(roulettePanel);
-		frame.pack();
-
-	}
+	
 
 	@Override
 	public void paintComponent(Graphics g) {
