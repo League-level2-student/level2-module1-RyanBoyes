@@ -9,15 +9,21 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class CRouletteTable {
-Casino Cobj2;
-CasinoWheel WheelObj2;
+
+
+
+
+
+
+
+
+
+
+/*Casino Cobj2;
 
 CRouletteTable(){
+
 	Cobj2 = new Casino();
-	WheelObj2 = new CasinoWheel();
-	Cobj2.GamePanel.add(Cobj2.wheelPanel);
-	Cobj2.GamePanel.add(Cobj2.roulettePanel);
-	
 	
 	
 	}
@@ -54,12 +60,12 @@ void drawRouletteTable(Graphics g) {
 		for (int j = 0; j < 13; j++) {
 
 			Cobj2.cell = new JLabel(cellCounter + "", SwingConstants.CENTER);
-			Cobj2.tablePanel.add(Cobj2.cell);
+		Cobj2.tablePanel.add(Cobj2.cell);
 
-			Cobj2.cell.addMouseListener((MouseListener) this);
+		Cobj2.cell.addMouseListener((MouseListener) this);
 			Cobj2.cell.setForeground(Color.WHITE);
 			Cobj2.cell.setFont(Cobj2.fontNum);
-			Cobj2.cell.setOpaque(true);
+		Cobj2.cell.setOpaque(true);
 			if (cellCounter == -2) {
 				Cobj2.cell.setText("0");
 				Cobj2.cell.setFont(Cobj2.font0);
@@ -173,16 +179,7 @@ void drawRouletteTable(Graphics g) {
 	
 	
 	
-	WheelObj2.draw(g);
-
-}
-
-
-
-
-
-
-
+	
 
 
 
@@ -191,3 +188,11 @@ void drawRouletteTable(Graphics g) {
 
 
 }
+
+
+
+
+
+
+}
+/*

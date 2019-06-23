@@ -24,9 +24,7 @@ import javax.swing.Timer;
 public class Casino extends JPanel implements ActionListener, KeyListener, MouseListener {
 	CasinoWheel WheelObj;
 	Timer timer;
-	Color rouletteColor;
-	Color rouletteColor2;
-	Color spinColor;
+	
 	
 	
 	JButton Rbutton;
@@ -37,18 +35,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	final int GAME2_STATE = 2;
 	int currentState = 0;
 	
-	Font titleFont;
-	Font enterFont1;
-	Font enterFont2;
-	Font rouletteFont;
-	Font returnFont;
-	Font font0;
-	Font font00;
-	Font fontNum;
-	Font fontOpt;
-	Font MoneyRemaining;
-	Font Disclaimer;
-
+	
 	int Money;
 	String MoneyS;
 	String MoneySpentS;
@@ -73,9 +60,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 	Casino() {
 		WheelObj = new CasinoWheel();
 		timer = new Timer(1000 / 60, this);
-		rouletteColor = new Color(53, 86, 21);
-		rouletteColor2 = new Color(53, 90, 18);
-		spinColor = new Color(140,15,15);
+		
 		
 		GamePanel = new JPanel();
 		GamePanel.setLayout(new BoxLayout(GamePanel, BoxLayout.Y_AXIS));
@@ -183,7 +168,7 @@ public class Casino extends JPanel implements ActionListener, KeyListener, Mouse
 			
 
 			if (tableDrawn == false) {
-				drawRouletteTable(g);
+				
 				tableDrawn = true;
 
 			}
