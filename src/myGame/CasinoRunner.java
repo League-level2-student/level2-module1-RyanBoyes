@@ -21,7 +21,7 @@ public class CasinoRunner {
 	
 	void setup() {
 	frame = new JFrame();
-	frame.add(new NewRouletteTable());
+	frame.add(new RoulettePanel());
 	frame.setSize(width, height);
 	frame.setVisible(true);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

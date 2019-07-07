@@ -1,5 +1,6 @@
 package myGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -11,20 +12,30 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class CasinoWheel {
+public class CasinoWheel extends JPanel{
 public BufferedImage wheelImg;
-	
-	
+	JLabel wheelLabel;
+ Color rouletteColor;
 
 CasinoWheel(){
 	try {
-		wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel.png"));
+		wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel2.png"));
 	} catch(IOException e){
 		e.printStackTrace();
 	}
+	rouletteColor = new Color(53,86,21);
 	
-
+	
+	setBackground(rouletteColor);
+	wheelLabel = new JLabel();
+	wheelLabel.setIcon(new ImageIcon(wheelImg));
+	
+	add(wheelLabel);
 }
 
 
@@ -57,12 +68,9 @@ private static GraphicsConfiguration getDefaultConfiguration() {
 
 
 	
-	void draw(Graphics g) {
-		g.drawImage(wheelImg, 120,10,250,250, null);
-		
-	}
 	
 	
+
 	
 	
 	

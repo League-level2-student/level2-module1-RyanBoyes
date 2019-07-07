@@ -1,39 +1,46 @@
 package myGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-public class RoulettePanel {
+public class RoulettePanel extends JPanel{
 
-JPanel RoulettePanel;
-JPanel Scoreboard;
-JPanel WheelPanel;
-JPanel TablePanel;
+
+ScoreboardTable Scoreboard;
+CasinoWheel WheelPanel;
+NewRouletteTable Table;
+JPanel SpinPanel;
 
 RoulettePanel(){
-	RoulettePanel = new JPanel();
-	RoulettePanel.setLayout(new BoxLayout(RoulettePanel,BoxLayout.PAGE_AXIS));
-	Scoreboard = new JPanel();
-	WheelPanel = new JPanel();
-	TablePanel = new JPanel();
+	Scoreboard = new ScoreboardTable();
+	WheelPanel = new CasinoWheel();
+	Table = new NewRouletteTable();
+	SpinPanel = new JPanel();
+	
+	setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+	
+
+	
+	add(Scoreboard);
+	add(WheelPanel);
+	add(Table);
+	add(SpinPanel);
+	
 	
 }
 
 
 
-void BuildPanel() {
+void BuildPanel(Graphics g) {
 	
-	RoulettePanel.add(Scoreboard);
-	RoulettePanel.add(WheelPanel);
-	RoulettePanel.add(TablePanel);
 	
-	Scoreboard.setBounds(0, 0, CasinoRunner.width, 30);
-	WheelPanel.setBounds(0, 30, CasinoRunner.width, 350);
-	TablePanel.setBounds(0, 380, CasinoRunner.width, 420);
 	
-	Scoreboard.setBackground(Color.BLACK);
+
+
+	
 	
 }
 
