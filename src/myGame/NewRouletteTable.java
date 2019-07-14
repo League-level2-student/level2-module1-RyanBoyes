@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -45,6 +46,7 @@ public class NewRouletteTable extends JPanel implements MouseListener {
 	int[] bets = new int[43];
 	int currentBet = 10;
 	int bank = 1000;
+	int MoneyInputI;
 	// 1-36 correspond to the same number
 	// 37 is even
 	// 38 is odd
@@ -156,6 +158,10 @@ public class NewRouletteTable extends JPanel implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		JLabel betClicked = (JLabel) e.getComponent();
+		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + betClicked.getText());
+		MoneyInputI = Integer.parseInt(MoneyInputS);
+		
 
 	}
 

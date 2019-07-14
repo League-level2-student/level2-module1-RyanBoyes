@@ -74,7 +74,7 @@ public void paintComponent(Graphics g) {
 
 	} else if (currentState == ROULETTE_STATE) {
 
-		drawRouletteState(g);
+		
 
 	}
 

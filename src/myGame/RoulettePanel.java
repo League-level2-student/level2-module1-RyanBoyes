@@ -12,13 +12,13 @@ public class RoulettePanel extends JPanel{
 ScoreboardTable Scoreboard;
 CasinoWheel WheelPanel;
 NewRouletteTable Table;
-JPanel SpinPanel;
+SpinTable SpinPanel;
 
 RoulettePanel(){
 	Scoreboard = new ScoreboardTable();
 	WheelPanel = new CasinoWheel();
 	Table = new NewRouletteTable();
-	SpinPanel = new JPanel();
+	SpinPanel = new SpinTable();
 	
 	setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	
