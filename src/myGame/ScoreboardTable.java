@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ScoreboardTable extends JPanel {
@@ -25,7 +26,6 @@ BankDisplay.setForeground(Color.WHITE);
 BankDisplay.setFont(ScoreboardFont);
 add(BankDisplay);
 
-MoneyInBank = MoneyInBank - Cobj.MoneyInputI;
 
 
 

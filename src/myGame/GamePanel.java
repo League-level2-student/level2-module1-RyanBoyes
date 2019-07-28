@@ -7,17 +7,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GamePanel implements ActionListener, KeyListener {
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class GamePanel extends JPanel implements ActionListener, KeyListener  {
+Timer timer;
 NewRouletteTable Cobj;
+RoulettePanel Robj;
 final int MENU_STATE;
 final int ROULETTE_STATE;
 int currentState;
+JFrame frame;
 
-GamePanel(){
+GamePanel(JFrame frame){
+	timer = new Timer(1000/60, this);
 	Cobj = new NewRouletteTable();
+	Robj = new RoulettePanel();
 	MENU_STATE = 0;
 	ROULETTE_STATE = 1;
-	currentState = 0;
+	currentState = 1;
+	this.frame = frame;
 	
 	
 }
@@ -59,7 +71,7 @@ void drawMenuState(Graphics g) {
 
 void drawRouletteState(Graphics g) {
 	
-
+	
 	
 	
 	
@@ -71,10 +83,12 @@ public void paintComponent(Graphics g) {
 
 	if (currentState == MENU_STATE) {
 		drawMenuState(g);
-
-	} else if (currentState == ROULETTE_STATE) {
-
 		
+		
+	} else if (currentState == ROULETTE_STATE) {
+		
+		frame.add(Robj);
+		frame.pack();
 
 	}
 
@@ -99,11 +113,16 @@ public void keyTyped(KeyEvent e) {
 @Override
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
-	if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+	if(e.getKeyCode()==KeyEvent.VK_1) {
 		currentState++;
+		System.out.println("work");
+		
+		
 	}
-	else if(currentState>=2) {
-		currentState = ROULETTE_STATE;
+	
+	
+	if(currentState>ROULETTE_STATE) {
+		currentState = MENU_STATE;
 	}
 }
 @Override
