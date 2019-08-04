@@ -22,15 +22,17 @@ final int ROULETTE_STATE;
 int currentState;
 JFrame frame;
 
+
 GamePanel(JFrame frame){
 	timer = new Timer(1000/60, this);
 	Cobj = new NewRouletteTable();
 	Robj = new RoulettePanel();
 	MENU_STATE = 0;
 	ROULETTE_STATE = 1;
-	currentState = 1;
+	currentState = 0;
 	this.frame = frame;
-	
+	this.frame.addKeyListener(this);
+	//timer.start();
 	
 }
 void drawMenuState(Graphics g) {
@@ -53,7 +55,7 @@ void drawMenuState(Graphics g) {
 
 	g.setFont(Cobj.rouletteFont);
 	g.setColor(Color.RED);
-	g.drawString("Roulette: Hit '1'", 105, 390);
+	g.drawString("Roulette: Hit 'SPACE'", 70, 390);
 
 	g.setFont(Cobj.Disclaimer);
 	g.setColor(Color.BLACK);
@@ -87,8 +89,15 @@ public void paintComponent(Graphics g) {
 		
 	} else if (currentState == ROULETTE_STATE) {
 		
-		frame.add(Robj);
-		frame.pack();
+		//Robj.paintComponent(g);
+		
+			
+			
+			
+		
+		
+		
+	
 
 	}
 
@@ -103,6 +112,9 @@ public void paintComponent(Graphics g) {
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
+	repaint();
+	
+	
 	
 }
 @Override
@@ -113,14 +125,19 @@ public void keyTyped(KeyEvent e) {
 @Override
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
-	if(e.getKeyCode()==KeyEvent.VK_1) {
+	if(e.getKeyCode()==KeyEvent.VK_SPACE) {
 		currentState++;
-		System.out.println("work");
-		
+		if(currentState==ROULETTE_STATE) {
+			frame.add(new RoulettePanel());
+			
+			frame.pack();
+			
+			
+		}
 		
 	}
 	
-	
+		
 	if(currentState>ROULETTE_STATE) {
 		currentState = MENU_STATE;
 	}

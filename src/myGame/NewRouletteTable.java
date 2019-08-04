@@ -18,6 +18,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 public class NewRouletteTable extends JPanel implements MouseListener {
+ScoreboardTable Sobj;
+
 
 	/**
 	 * 
@@ -58,6 +60,8 @@ public class NewRouletteTable extends JPanel implements MouseListener {
 	// 42 is 19-36
 
 	NewRouletteTable() {
+		Sobj = new ScoreboardTable();
+	
 		this.initializeColorHashmap();
 		Border panelPadding = BorderFactory.createLineBorder(rouletteBackgroundColor, 1);
 		this.setBorder(new MatteBorder(-4, 10, -4, 10, rouletteBackgroundColor));
@@ -164,7 +168,13 @@ public class NewRouletteTable extends JPanel implements MouseListener {
 		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + betClicked.getText());
 		MoneyInputI = Integer.parseInt(MoneyInputS);
 		
-		
+		if(Sobj.MoneyInBank<MoneyInputI) {
+			JOptionPane.showMessageDialog(null, "Improper funds.");
+		}
+		else {
+			Sobj.MoneyInBank = Sobj.MoneyInBank - MoneyInputI;
+			JOptionPane.showMessageDialog(null, "Your current balance is $" + Sobj.MoneyInBank);
+		}
 
 	}
 

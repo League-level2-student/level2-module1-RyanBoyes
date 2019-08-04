@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ScoreboardTable extends JPanel {
-NewRouletteTable Cobj;
+GamePanel Pobj;
 String MoneyInBankText = "Money in bank: $";
-int MoneyInBank = 100;
+int MoneyInBank;
 JLabel BankDisplay;
 Font ScoreboardFont;
 
@@ -18,8 +18,9 @@ Font ScoreboardFont;
 	
 	
 ScoreboardTable(){
-	Cobj = new NewRouletteTable();
+
 	ScoreboardFont = new Font("Ariel", Font.PLAIN, 18);
+	MoneyInBank = 100;
 setBackground(Color.BLACK);
 BankDisplay = new JLabel(MoneyInBankText + MoneyInBank);
 BankDisplay.setForeground(Color.WHITE);
