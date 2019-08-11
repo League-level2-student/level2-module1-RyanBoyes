@@ -17,7 +17,7 @@ SpinTable SpinPanel;
 RoulettePanel(){
 	Scoreboard = new ScoreboardTable();
 	WheelPanel = new CasinoWheel();
-	Table = new NewRouletteTable();
+	Table = new NewRouletteTable(Scoreboard);
 	SpinPanel = new SpinTable();
 	
 	setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
@@ -30,6 +30,14 @@ RoulettePanel(){
 	add(SpinPanel);
 	
 	
+}
+
+
+
+
+ScoreboardTable getScoreboardTable(){
+	
+	return Scoreboard;
 }
 
 

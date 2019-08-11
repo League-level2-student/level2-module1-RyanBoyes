@@ -59,8 +59,8 @@ ScoreboardTable Sobj;
 	// 41 is 1-18
 	// 42 is 19-36
 
-	NewRouletteTable() {
-		Sobj = new ScoreboardTable();
+	NewRouletteTable(ScoreboardTable Sobj) {
+		this.Sobj = Sobj;
 	
 		this.initializeColorHashmap();
 		Border panelPadding = BorderFactory.createLineBorder(rouletteBackgroundColor, 1);
@@ -168,12 +168,13 @@ ScoreboardTable Sobj;
 		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + betClicked.getText());
 		MoneyInputI = Integer.parseInt(MoneyInputS);
 		
-		if(Sobj.MoneyInBank<MoneyInputI) {
-			JOptionPane.showMessageDialog(null, "Improper funds.");
-		}
-		else {
+		if(Sobj.MoneyInBank>=MoneyInputI) {
 			Sobj.MoneyInBank = Sobj.MoneyInBank - MoneyInputI;
 			JOptionPane.showMessageDialog(null, "Your current balance is $" + Sobj.MoneyInBank);
+		}
+		else {
+			
+			JOptionPane.showMessageDialog(null, "Improper funds.");
 		}
 
 	}

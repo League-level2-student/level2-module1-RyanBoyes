@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener  {
 Timer timer;
 NewRouletteTable Cobj;
 RoulettePanel Robj;
+ScoreboardTable Sobj;
 final int MENU_STATE;
 final int ROULETTE_STATE;
 int currentState;
@@ -25,8 +26,9 @@ JFrame frame;
 
 GamePanel(JFrame frame){
 	timer = new Timer(1000/60, this);
-	Cobj = new NewRouletteTable();
+	Cobj = new NewRouletteTable(Sobj);
 	Robj = new RoulettePanel();
+	Sobj = Robj.getScoreboardTable();
 	MENU_STATE = 0;
 	ROULETTE_STATE = 1;
 	currentState = 0;
@@ -127,10 +129,14 @@ public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
 	if(e.getKeyCode()==KeyEvent.VK_SPACE) {
 		currentState++;
+	
+		
 		if(currentState==ROULETTE_STATE) {
 			frame.add(new RoulettePanel());
 			
 			frame.pack();
+			
+			
 			
 			
 		}
