@@ -47,10 +47,8 @@ ScoreboardTable Sobj;
 
 	int[] bets = new int[43];
 	int currentBet = 10;
-	int bank = 1000;
-	int MoneyInputI;
 	
-	JLabel betClicked;
+	
 	// 1-36 correspond to the same number
 	// 37 is even
 	// 38 is odd
@@ -164,12 +162,13 @@ ScoreboardTable Sobj;
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		betClicked = (JLabel) e.getComponent();
-		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + betClicked.getText());
-		MoneyInputI = Integer.parseInt(MoneyInputS);
-		
-		if(Sobj.MoneyInBank>=MoneyInputI) {
-			Sobj.MoneyInBank = Sobj.MoneyInBank - MoneyInputI;
+		Sobj.betClicked = (JLabel) e.getComponent();
+	
+		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + Sobj.betClicked.getText());
+		Sobj.MoneyInputI = Integer.parseInt(MoneyInputS);
+		//Sobj.betClickedI = Integer.parseInt(Sobj.betClicked.getText());
+		if(Sobj.MoneyInBank>=Sobj.MoneyInputI) {
+			Sobj.MoneyInBank = Sobj.MoneyInBank - Sobj.MoneyInputI;
 			JOptionPane.showMessageDialog(null, "Your current balance is $" + Sobj.MoneyInBank);
 		}
 		else {

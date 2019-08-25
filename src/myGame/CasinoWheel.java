@@ -22,6 +22,7 @@ public BufferedImage wheelImg;
 	JLabel wheelLabel;
  Color rouletteColor;
 
+
 CasinoWheel(){
 	try {
 		wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel2.png"));
@@ -36,6 +37,9 @@ CasinoWheel(){
 	wheelLabel.setIcon(new ImageIcon(wheelImg));
 	
 	add(wheelLabel);
+	
+	
+	
 }
 
 

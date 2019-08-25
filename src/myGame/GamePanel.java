@@ -27,8 +27,8 @@ JFrame frame;
 GamePanel(JFrame frame){
 	timer = new Timer(1000/60, this);
 	Cobj = new NewRouletteTable(Sobj);
-	Robj = new RoulettePanel();
-	Sobj = Robj.getScoreboardTable();
+	
+	
 	MENU_STATE = 0;
 	ROULETTE_STATE = 1;
 	currentState = 0;

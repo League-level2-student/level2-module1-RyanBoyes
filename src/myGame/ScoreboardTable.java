@@ -2,6 +2,7 @@ package myGame;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,6 +16,14 @@ int MoneyEntered;
 String MoneyInBankS;
 JLabel BankDisplay;
 Font ScoreboardFont;
+Random NumberRolledRDM;
+int NumberRolled;
+String NumberRolledS;
+
+int MoneyInputI;
+
+JLabel betClicked;
+int betClickedI;
 
 
 	
@@ -32,6 +41,8 @@ MoneyEntered = Integer.parseInt(MoneyInBankS = JOptionPane.showInputDialog("How 
 
 ScoreboardTable(){
 	 getBalance();
+	 NumberRolledRDM = new Random();
+	
 	ScoreboardFont = new Font("Ariel", Font.PLAIN, 18);
 	MoneyInBank = MoneyEntered;
 setBackground(Color.BLACK);
