@@ -55,17 +55,15 @@ void drawMenuState(Graphics g) {
 	g.setColor(Color.BLACK);
 	g.drawString("like to go to", 130, 220);
 
-	g.setFont(Cobj.rouletteFont);
+	g.setFont(Cobj.enterFont2);
 	g.setColor(Color.RED);
-	g.drawString("Roulette: Hit 'SPACE'", 70, 390);
+	g.drawString("Roulette: Hit 'SPACE'", 55, 490);
 
 	g.setFont(Cobj.Disclaimer);
 	g.setColor(Color.BLACK);
 	g.drawString("(DISCLAIMER: EVERYTHING IS IN TERMS OF CENTS)", 5, 275);
 
-	g.setFont(Cobj.returnFont);
-	g.setColor(Color.BLACK);
-	g.drawString("To return to the menu, press 'ESC.'", 15, 760);
+	
 
 	g.setFont(Cobj.titleFont);
 	g.setColor(Color.BLACK);
