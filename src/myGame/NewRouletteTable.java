@@ -167,14 +167,7 @@ ScoreboardTable Sobj;
 		String MoneyInputS = JOptionPane.showInputDialog("Place your bet on " + Sobj.betClicked.getText());
 		Sobj.MoneyInputI = Integer.parseInt(MoneyInputS);
 		//Sobj.betClickedI = Integer.parseInt(Sobj.betClicked.getText());
-		if(Sobj.MoneyInBank>=Sobj.MoneyInputI) {
-			Sobj.MoneyInBank = Sobj.MoneyInBank - Sobj.MoneyInputI;
-			JOptionPane.showMessageDialog(null, "Your current balance is $" + Sobj.MoneyInBank);
-		}
-		else {
-			
-			JOptionPane.showMessageDialog(null, "Improper funds.");
-		}
+		
 
 	}
 
@@ -221,7 +214,7 @@ ScoreboardTable Sobj;
 		numberColors.put(22, Color.BLACK);
 		numberColors.put(23, Color.RED);
 		numberColors.put(24, Color.BLACK);
-		numberColors.put(25, Color.BLACK);
+		numberColors.put(25, Color.RED);
 		numberColors.put(26, Color.BLACK);
 		numberColors.put(27, Color.RED);
 		numberColors.put(28, Color.BLACK);

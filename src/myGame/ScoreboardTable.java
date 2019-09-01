@@ -25,6 +25,10 @@ int MoneyInputI;
 JLabel betClicked;
 int betClickedI;
 
+int NumPayoutProcess;
+int NumPayout;
+
+int DoublePayout;
 
 	
 	
