@@ -38,18 +38,20 @@ setBackground(SpinColor);
 public void mouseClicked(MouseEvent e) {
 	// TODO Auto-generated method stub
 	if(e.getSource()==Spin) {
-		if(Sobj.MoneyInBank>=Sobj.MoneyInputI) {
+		Sobj.rotate(Sobj.wheelImg, 45);
+		
+		if(Sobj.MoneyInBank<Sobj.MoneyInputI) {
+			JOptionPane.showMessageDialog(null, "Improper funds. To add more money, reset game panel.");
+			
+		}
+		else if(Sobj.MoneyInBank>=Sobj.MoneyInputI) {
 			Sobj.MoneyInBank = Sobj.MoneyInBank - Sobj.MoneyInputI;
-			JOptionPane.showMessageDialog(null, "Your current balance is $" + Sobj.MoneyInBank);
+			
 			Sobj.NumPayoutProcess = Sobj.MoneyInputI*35;
 			Sobj.NumPayout = Sobj.NumPayoutProcess + Sobj.MoneyInputI;
 			
 			Sobj.DoublePayout = Sobj.MoneyInputI*2;
-		}
-		else {
-			
-			JOptionPane.showMessageDialog(null, "Improper funds. Hit SPACE to add more money to your account.");
-		}
+		
 		
 		Sobj.NumberRolled = Sobj.NumberRolledRDM.nextInt(36)+1;
 		System.out.println(Sobj.NumberRolled);
@@ -319,7 +321,7 @@ public void mouseClicked(MouseEvent e) {
 			}
 		}
 		
-		
+		}
 		
 		
 		

@@ -18,56 +18,65 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CasinoWheel extends JPanel{
-public BufferedImage wheelImg;
-	JLabel wheelLabel;
+	ScoreboardTable Sobj;
+
+	
  Color rouletteColor;
 
 
-CasinoWheel(){
+CasinoWheel(ScoreboardTable Sobj){
+	this.Sobj = Sobj;
 	try {
-		wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel2.png"));
+		Sobj.wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel2.png"));
 	} catch(IOException e){
 		e.printStackTrace();
 	}
+	try {
+		Sobj.wheelImg90 = ImageIO.read(this.getClass().getResourceAsStream("Wheel2-90 copy.png"));
+	} catch(IOException e){
+		e.printStackTrace();
+	}
+	try {
+		Sobj.wheelImg180 = ImageIO.read(this.getClass().getResourceAsStream("Wheel2-180 copy.png"));
+	} catch(IOException e){
+		e.printStackTrace();
+	}
+	try {
+		Sobj.wheelImg270 = ImageIO.read(this.getClass().getResourceAsStream("Wheel2-270 copy.png"));
+	} catch(IOException e){
+		e.printStackTrace();
+	}
+	
+	
+	
+	
+	
 	rouletteColor = new Color(53,86,21);
 	
 	
 	setBackground(rouletteColor);
-	wheelLabel = new JLabel();
-	wheelLabel.setIcon(new ImageIcon(wheelImg));
+	Sobj.wheelLabel = new JLabel();
+	Sobj.wheelLabel90 = new JLabel();
+	Sobj.wheelLabel180 = new JLabel();
+	Sobj.wheelLabel270 = new JLabel();
 	
-	add(wheelLabel);
+	
+	Sobj.wheelLabel.setIcon(new ImageIcon(	Sobj.wheelImg));
+	Sobj.wheelLabel90.setIcon(new ImageIcon(	Sobj.wheelImg90));
+	Sobj.wheelLabel180.setIcon(new ImageIcon(	Sobj.wheelImg180));
+	Sobj.wheelLabel270.setIcon(new ImageIcon(	Sobj.wheelImg270));
+	
+	
+	
+	
+	
+	add(Sobj.wheelLabel);
 	
 	
 	
 }
 
 
-
-
-
-
-
-	
-public static BufferedImage rotate(BufferedImage image, double angle) {
-    double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
-    int w = image.getWidth(), h = image.getHeight();
-    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
-    GraphicsConfiguration gc = getDefaultConfiguration();
-    BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
-    Graphics2D g = result.createGraphics();
-    g.translate((neww - w) / 2, (newh - h) / 2);
-    g.rotate(angle, w / 2, h / 2);
-    g.drawRenderedImage(image, null);
-    g.dispose();
-    return result;
-}
-
-private static GraphicsConfiguration getDefaultConfiguration() {
-    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    GraphicsDevice gd = ge.getDefaultScreenDevice();
-    return gd.getDefaultConfiguration();
-}
 
 
 

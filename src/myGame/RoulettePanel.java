@@ -16,7 +16,7 @@ SpinTable SpinPanel;
 
 RoulettePanel(){
 	Scoreboard = new ScoreboardTable();
-	WheelPanel = new CasinoWheel();
+	WheelPanel = new CasinoWheel(Scoreboard);
 	Table = new NewRouletteTable(Scoreboard);
 	SpinPanel = new SpinTable(Scoreboard);
 	
