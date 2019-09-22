@@ -11,13 +11,16 @@ import javax.swing.JPanel;
 
 public class SpinTable extends JPanel implements MouseListener{
 	ScoreboardTable Sobj;
+	CasinoWheel Wobj;
 
 JLabel Spin;
 Color SpinColor;
 Font SpinFont;
 
 SpinTable(ScoreboardTable Sobj){
+	
 	this.Sobj = Sobj;
+	
 	
 Spin = new JLabel();
 SpinColor = new Color(148,9,9);
@@ -34,11 +37,19 @@ setBackground(SpinColor);
 
 
 }
+private CasinoWheel CasinoWheel(ScoreboardTable sobj2) {
+	// TODO Auto-generated method stub
+	return null;
+}
 @Override
 public void mouseClicked(MouseEvent e) {
 	// TODO Auto-generated method stub
 	if(e.getSource()==Spin) {
-		Sobj.rotate(Sobj.wheelImg, 45);
+		Sobj.Spinning = true;
+		Sobj.currentWheelImg++;
+		if(Sobj.currentWheelImg>3) {
+			Sobj.currentWheelImg = 0;
+		}
 		
 		if(Sobj.MoneyInBank<Sobj.MoneyInputI) {
 			JOptionPane.showMessageDialog(null, "Improper funds. To add more money, reset game panel.");

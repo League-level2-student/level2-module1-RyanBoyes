@@ -44,6 +44,16 @@ public BufferedImage wheelImg;
 public BufferedImage wheelImg90;
 public BufferedImage wheelImg180;
 public BufferedImage wheelImg270;
+
+JLabel[] wheelImages = {wheelLabel,wheelLabel90,wheelLabel180,wheelLabel270};
+
+int currentWheelImg;
+
+boolean Spinning;
+int timerCount;
+int timerLimit = 250;
+
+
 	
 	
 	
@@ -77,7 +87,7 @@ add(BankDisplay);
 }
 
 
-public static BufferedImage rotate(BufferedImage image, double angle) {
+	BufferedImage rotate(BufferedImage image, double angle) {
     double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
     int w = image.getWidth(), h = image.getHeight();
     int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
@@ -91,7 +101,7 @@ public static BufferedImage rotate(BufferedImage image, double angle) {
     return result;
 }
 
-private static GraphicsConfiguration getDefaultConfiguration() {
+	GraphicsConfiguration getDefaultConfiguration() {
     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
     GraphicsDevice gd = ge.getDefaultScreenDevice();
     return gd.getDefaultConfiguration();

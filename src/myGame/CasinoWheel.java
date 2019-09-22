@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 public class CasinoWheel extends JPanel{
 	ScoreboardTable Sobj;
+	
 
 	
  Color rouletteColor;
@@ -26,6 +27,7 @@ public class CasinoWheel extends JPanel{
 
 CasinoWheel(ScoreboardTable Sobj){
 	this.Sobj = Sobj;
+	Sobj.Spinning = false;
 	try {
 		Sobj.wheelImg = ImageIO.read(this.getClass().getResourceAsStream("Wheel2.png"));
 	} catch(IOException e){
@@ -51,26 +53,31 @@ CasinoWheel(ScoreboardTable Sobj){
 	
 	
 	
+	
+	
+	
+	
+	
 	rouletteColor = new Color(53,86,21);
 	
 	
 	setBackground(rouletteColor);
-	Sobj.wheelLabel = new JLabel();
-	Sobj.wheelLabel90 = new JLabel();
-	Sobj.wheelLabel180 = new JLabel();
-	Sobj.wheelLabel270 = new JLabel();
+	Sobj.wheelImages[0] = new JLabel();
+	Sobj.wheelImages[1] = new JLabel();
+	Sobj.wheelImages[2] = new JLabel();
+	Sobj.wheelImages[3] = new JLabel();
 	
 	
-	Sobj.wheelLabel.setIcon(new ImageIcon(	Sobj.wheelImg));
-	Sobj.wheelLabel90.setIcon(new ImageIcon(	Sobj.wheelImg90));
-	Sobj.wheelLabel180.setIcon(new ImageIcon(	Sobj.wheelImg180));
-	Sobj.wheelLabel270.setIcon(new ImageIcon(	Sobj.wheelImg270));
+	Sobj.wheelImages[0].setIcon(new ImageIcon(	Sobj.wheelImg));
+	Sobj.wheelImages[1].setIcon(new ImageIcon(	Sobj.wheelImg90));
+	Sobj.wheelImages[2].setIcon(new ImageIcon(	Sobj.wheelImg180));
+	Sobj.wheelImages[3].setIcon(new ImageIcon(	Sobj.wheelImg270));
 	
 	
 	
 	
 	
-	add(Sobj.wheelLabel);
+	add(Sobj.wheelImages[Sobj.currentWheelImg]);
 	
 	
 	
