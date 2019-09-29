@@ -20,7 +20,7 @@ Font SpinFont;
 SpinTable(ScoreboardTable Sobj){
 	
 	this.Sobj = Sobj;
-	
+	Wobj = new CasinoWheel(Sobj);
 	
 Spin = new JLabel();
 SpinColor = new Color(148,9,9);
@@ -44,12 +44,15 @@ private CasinoWheel CasinoWheel(ScoreboardTable sobj2) {
 @Override
 public void mouseClicked(MouseEvent e) {
 	// TODO Auto-generated method stub
+	
+	
+	
 	if(e.getSource()==Spin) {
-		Sobj.Spinning = true;
-		Sobj.currentWheelImg++;
-		if(Sobj.currentWheelImg>3) {
-			Sobj.currentWheelImg = 0;
-		}
+		
+	
+		
+		
+		
 		
 		if(Sobj.MoneyInBank<Sobj.MoneyInputI) {
 			JOptionPane.showMessageDialog(null, "Improper funds. To add more money, reset game panel.");

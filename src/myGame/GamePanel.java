@@ -113,18 +113,19 @@ public void paintComponent(Graphics g) {
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
 	//repaint();
-	if(Sobj.Spinning = true) {
-		Sobj.currentWheelImg++;
-	}
-	if(Sobj.currentWheelImg>3) {
-		Sobj.currentWheelImg=0;
-	}
 	
-	Sobj.timerCount++;
-	if(Sobj.timerCount>=Sobj.timerLimit) {
-		Sobj.Spinning = false;
-		Sobj.timerCount = 0;
-	}
+	
+	/*Sobj.timerCount++;
+		
+		Sobj.Spinning = true;
+		Sobj.currentWheelImg++;
+		if(Sobj.currentWheelImg>3) {
+			Sobj.currentWheelImg = 0;
+		}
+		if(Sobj.timerCount>=Sobj.timerLimit) {
+			Sobj.Spinning = false;
+		}
+		*/
 	
 	
 }

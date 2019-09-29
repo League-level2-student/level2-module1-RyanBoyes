@@ -23,7 +23,7 @@ public class CasinoWheel extends JPanel{
 
 	
  Color rouletteColor;
-
+ int currentWheelImg;
 
 CasinoWheel(ScoreboardTable Sobj){
 	this.Sobj = Sobj;
@@ -77,16 +77,18 @@ CasinoWheel(ScoreboardTable Sobj){
 	
 	
 	
-	add(Sobj.wheelImages[Sobj.currentWheelImg]);
-	
-	
+	add(Sobj.wheelImages[currentWheelImg]);
 	
 }
 
 
+void addWheel() {
+	add(Sobj.wheelImages[currentWheelImg]);
+}
 
-
-
+void removeWheel() {
+	remove(Sobj.wheelImages[currentWheelImg]);
+}
 	
 	
 	

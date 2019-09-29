@@ -47,7 +47,7 @@ public BufferedImage wheelImg270;
 
 JLabel[] wheelImages = {wheelLabel,wheelLabel90,wheelLabel180,wheelLabel270};
 
-int currentWheelImg;
+
 
 boolean Spinning;
 int timerCount;
