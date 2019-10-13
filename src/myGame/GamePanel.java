@@ -57,17 +57,38 @@ void drawMenuState(Graphics g) {
 
 	g.setFont(Cobj.enterFont2);
 	g.setColor(Color.RED);
-	g.drawString("Roulette: Hit 'SPACE'", 55, 490);
+	g.drawString("Roulette: Hit 'SPACE'", 55, 640);
 
 	g.setFont(Cobj.Disclaimer);
 	g.setColor(Color.BLACK);
 	g.drawString("(DISCLAIMER: EVERYTHING IS IN TERMS OF CENTS)", 5, 275);
 
+	g.setFont(Cobj.enterFont2);
+	g.setColor(Color.BLACK);
+	g.drawString("HOW TO PLAY:", 100, 340);
 	
+	g.setFont(Cobj.Disclaimer);
+	g.setColor(Color.black);
+	g.drawString("Enter the amount of money you would like to play",  5,  370);
 
+	g.setFont(Cobj.Disclaimer);
+	g.setColor(Color.black);
+	g.drawString("with, and select 1 button to bet on. The number",  20,  390);
+
+	g.setFont(Cobj.Disclaimer);
+	g.setColor(Color.black);
+	g.drawString("rolled will appear in the console, as well as if it is",  5,  410);
+	
+	g.setFont(Cobj.Disclaimer);
+	g.setColor(Color.black);
+	g.drawString("a winner.", 217,  430);
+	
+	
 	g.setFont(Cobj.titleFont);
 	g.setColor(Color.BLACK);
 	g.drawString("Casino Name", 80, 90);
+	
+	
 
 }
 
